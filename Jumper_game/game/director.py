@@ -47,27 +47,29 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        self._word.get_letter()
+        if self._is_playing == 'yes':
+            self._word.get_letter()
         
                 
     def _do_updates(self):
-            """Keeps count of the users guesses and decides if they are correct.
+            """Shows the user what they have guessed correctly and updates the parachute display.
+               Keeps count of the users guesses and decides if they are correct.
 
             Args:
                 self (Director): An instance of Director.
             """
             self._parachute.check_word(self._word)
+            self._parachute.show()
+            self._word.guess_lines()
             self._parachute.check_win(self._word)
             
         
     def _do_outputs(self):
-        """Shows the user what they have guessed correctly and updates the parachute display.
-           If they have won or lost display a message and end the game.
+        """If they have won or lost display a message and end the game.
         Args:
             self (Director): An instance of Director.
         """
-        self._parachute.show()
-        self._word.guess_lines()
+
         if self._parachute._won == 'yes':
             self._terminal_service.write_text("\nCongratulations you won!")
             self._is_playing = 'no'
