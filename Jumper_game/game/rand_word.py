@@ -15,16 +15,15 @@ class Word:
     def get_letter(self):
         '''Gets input for a guessed letter from user'''
         
-        self.user_guess = input('Guess a letter [a-z]: ').lower()
+        self.user_guess = input('Guess a letter from [a-z]: ').lower()
         return self.user_guess
 
     def guess_lines(self):
         '''creates lines to show length of word with letters filled out as game progresses'''
 
-        
         for i in range(self.len):
             if self.user_guess in self.word[i]:
-                self.blanks = self.blanks[:i] + self.word[i] + self.blanks[i+1:]
+                self.blanks = self.blanks[:i] +self.word[i] + self.blanks[i+1:]
 
         for letter in self.blanks:
-            print(letter, end=' ')
+            print(letter, end=" ")

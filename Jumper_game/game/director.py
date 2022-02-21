@@ -1,6 +1,7 @@
 from game.rand_word import Word
 from game.terminal_service import TerminalService
 from game.parachute_display import ParachuteMan
+from game.parachutes import parachute
 
 class Director:
     """A person who directs the game. 
@@ -24,6 +25,7 @@ class Director:
         self._is_playing = 'yes'
         self._parachute = ParachuteMan()
         self._terminal_service = TerminalService()
+        self.jumper = parachute
         
     def start_game(self):
         """Starts the game by running the main game loop.
@@ -31,11 +33,14 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
+        print()
+        print("Welcome to the jumper Game!")
+        print(parachute[0])
         while self._is_playing == 'yes':
             self._get_inputs()
             self._do_updates()
             self._do_outputs()
-
+     
     def _get_inputs(self):
         """gets the users guess.
 
@@ -44,15 +49,16 @@ class Director:
         """
         self._word.get_letter()
         
+                
     def _do_updates(self):
-        """Keeps count of the users guesses and decides if they are correct.
+            """Keeps count of the users guesses and decides if they are correct.
 
-        Args:
-            self (Director): An instance of Director.
-        """
-        self._parachute.check_word(self._word)
-        self._parachute.check_win(self._word)
-        
+            Args:
+                self (Director): An instance of Director.
+            """
+            self._parachute.check_word(self._word)
+            self._parachute.check_win(self._word)
+            
         
     def _do_outputs(self):
         """Shows the user what they have guessed correctly and updates the parachute display.
@@ -69,5 +75,7 @@ class Director:
         elif self._parachute._lose == 'yes':
             self._terminal_service.write_text("\nYou Lose!")
             self._is_playing = 'no'
-
+        
+   
+   
 

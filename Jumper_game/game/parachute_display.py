@@ -15,9 +15,10 @@ class ParachuteMan:
         self._attempt = 0
         self._won = 'no'
         self._lose = 'no'
+        self.word = Word()
 
     def check_word(self, word):
-        """Checks the random word to see is the letter guessed by the user is in the word."""
+        """Checks the random word to see if the letter guessed by the user is in the word."""
         if word.user_guess in word.word:
                 self._guess = 'correct'
         else:
@@ -34,4 +35,6 @@ class ParachuteMan:
         """prints out the picture and uses the logic needed to change depending on the number of attemp count."""
         print(parachute[self._attempt])
         print(f'That\'s {self._guess}!')
+
+
 
